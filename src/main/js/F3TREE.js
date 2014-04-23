@@ -119,6 +119,8 @@ var F3TREE = (function() {
         $('#' + id).css('width', width);
         $('#' + id).css('height', height);
 
+
+        // TODO Find a way to make the alignment dynamic
         $('#vertical').css('left', (4 + $('#space1').position().left) + 'px');
         $('#horizontal').css('left', (8 + 29 + 6 + $('#space2').position().left) + 'px');
         $('#alphabetical').css('left', (8 + 29 + 8 + 29 + 5 + $('#space3').position().left) + 'px');

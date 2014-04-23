@@ -1,27 +1,34 @@
 var F3TREE = (function() {
 
     var CONFIG = {
-        lang            :   'E',
-        lang_ISO2       :   'EN',
-        I18N_prefix     :   '',
-        prefix          :   '',
-        placeholderID   :   '',
-        labelID         :   '_default',
-        min_height      :   '20px',
-        delay           :   250,
-        box_distance    :   16,
-        mode1_open      :   false,
-        mode1_height    :   '348px',
-        mode1_width     :   '298px',
-        mode2_open      :   false,
-        mode2_height    :   '148px',
-        mode2_width     :   '398px',
-        mode3_open      :   false,
-        mode3_height    :   '248px',
-        mode3_width     :   '248px',
-        v_tree_height   :   '346px',
-        v_tree_width    :   '296px',
-        v_tree_data     :   null
+        lang                    :   'E',
+        lang_ISO2               :   'EN',
+        I18N_prefix             :   '',
+        prefix                  :   '',
+        placeholderID           :   '',
+        labelID                 :   '_default',
+        min_height              :   '20px',
+        delay                   :   250,
+        box_distance            :   9,
+        tree_options_open       :   false,
+        tree_options_height     :   '30px',
+        mode1_open              :   false,
+        mode1_height            :   '348px',
+        mode1_width             :   '298px',
+        mode2_open              :   false,
+        mode2_height            :   '148px',
+        mode2_width             :   '398px',
+        mode3_open              :   false,
+        mode3_height            :   '248px',
+        mode3_width             :   '248px',
+        v_tree_height           :   '346px',
+        v_tree_width            :   '296px',
+        v_tree_data             :   null,
+        default_configuration   :   'classic',
+        configurations  :   {
+            statistics  :   '/tree/config/FAOSTAT_Statistics.json',
+            classic     :   '/tree/config/FAOSTAT_Classic.json'
+        }
     };
 
     function init(config) {
@@ -45,28 +52,118 @@ var F3TREE = (function() {
         });
 
         /* Load vertical tree data. */
-        $.getJSON('/faostat-tree/config/FAOSTAT_New.json', function (data) {
+        $.getJSON(F3TREE.CONFIG.configurations[F3TREE.CONFIG.default_configuration], function (data) {
             F3TREE.CONFIG.v_tree_data = data;
-        })
+        });
 
         /* Create the placeholder. */
         createPlaceholder();
 
     };
 
+    function loadConfiguration(configurationID) {
+
+        /* Load vertical tree data. */
+        $.getJSON(F3TREE.CONFIG.configurations[configurationID], function (data) {
+            F3TREE.CONFIG.v_tree_data = data;
+            mode1();
+        });
+
+    };
+
     function createPlaceholder() {
-        var s = '<div class="placeholder">'
-        s += '<h1 style="display: inline-block;" class="placeholder h1">';
+        var s = '<div id="tree-menu-box" class="tree-menu-box" onclick="F3TREE.showTreeOptions();">';
         s += $.i18n.prop(F3TREE.CONFIG.labelID);
-        s += '</h1>';
-        s += '<div class="h-space">&nbsp;</div>';
-        s += '<img id="vertical" onclick="F3TREE.mode1();" src="images/mode1.png" class="image" title="' + $.i18n.prop('_vertical_tree') + '">';
-        s += '<div class="h-space">&nbsp;</div>';
-        s += '<img id="horizontal" onclick="F3TREE.mode2();" src="images/mode2.png" class="image" title="' + $.i18n.prop('_horizontal_tree') + '">';
-        s += '<div class="h-space">&nbsp;</div>';
-        s += '<img id="alphabetical" onclick="F3TREE.mode3();" src="images/mode3.png" class="image" title="' + $.i18n.prop('_alphabetical_order') + '">';
         s += '</div>';
+
         document.getElementById(F3TREE.CONFIG.placeholderID).innerHTML = s;
+    };
+
+    function showTreeOptions() {
+        if (F3TREE.CONFIG.tree_options_open == true) {
+            F3TREE.CONFIG.tree_options_open = false;
+            closeTreeOptions();
+        } else {
+            F3TREE.CONFIG.tree_options_open = true;
+            openTreeOptions();
+        }
+    };
+
+    function openTreeOptions() {
+
+        /* Create icons holder box. */
+        var id = 'tree-options-box';
+        $('#' + F3TREE.CONFIG.placeholderID).append('<div id="' + id + '" class="fnx-tree-box"></div>');
+
+        /* Add icons. */
+        var s = '<div class="placeholder">'
+        s += '<div class="h-space" id="space1">&nbsp;</div>';
+        s += '<img id="vertical" onclick="F3TREE.mode1();" src="images/mode1.png" class="image" title="' + $.i18n.prop('_vertical_tree') + '">';
+        s += '<div class="h-space" id="space2">&nbsp;</div>';
+        s += '<img id="horizontal" onclick="F3TREE.mode2();" src="images/mode2.png" class="image" title="' + $.i18n.prop('_horizontal_tree') + '">';
+        s += '<div class="h-space" id="space3">&nbsp;</div>';
+        s += '<img id="alphabetical" onclick="F3TREE.mode3();" src="images/mode3.png" class="image" title="' + $.i18n.prop('_alphabetical_order') + '">';
+        s += '<div class="h-space">&nbsp;</div>';
+        s += '</div>';
+        document.getElementById('tree-options-box').innerHTML = s;
+
+        /* Compute the position of the original placeholder. */
+        var position = $('#tree-menu-box').position();
+        var top = position.top;
+        var left = position.left;
+        var height = px2int($('#tree-menu-box').css('height'));
+        var width = px2int($('#tree-menu-box').css('width')) - 8;
+        $('#' + id).css('display', 'inline');
+        $('#' + id).css('top', top);
+        $('#' + id).css('left', left);
+        $('#' + id).css('width', width);
+        $('#' + id).css('height', height);
+
+        $('#vertical').css('left', (4 + $('#space1').position().left) + 'px');
+        $('#horizontal').css('left', (8 + 29 + 6 + $('#space2').position().left) + 'px');
+        $('#alphabetical').css('left', (8 + 29 + 8 + 29 + 5 + $('#space3').position().left) + 'px');
+
+        /* Show the icons holder box. */
+        $('#' + id).animate(
+            {
+                top: '+=' + (parseInt(F3TREE.CONFIG.box_distance) + parseInt(height)) + 'px'
+            }, F3TREE.CONFIG.delay).animate({
+                height: F3TREE.CONFIG.tree_options_height
+            }, F3TREE.CONFIG.delay, function() {
+                open('alphabetical', F3TREE.CONFIG.mode3_width, F3TREE.CONFIG.mode3_height, buildAlphabeticalTree);
+            });
+
+    };
+
+    function closeTreeOptions() {
+        close();
+        var height = px2int(F3TREE.CONFIG.min_height);
+        $('#tree-options-box').animate(
+            {
+                height: F3TREE.CONFIG.min_height
+            }, F3TREE.CONFIG.delay, function() {
+                $('#tree-options-box').remove();
+            }).animate(
+            {
+                top: '-=' + (parseInt(F3TREE.CONFIG.box_distance) + parseInt(height)) + 'px'
+            }, F3TREE.CONFIG.delay);
+    };
+
+    function destroyTreeBox() {
+        $('#fnx-tree-box').remove();
+    };
+
+    function close() {
+        var height = px2int(F3TREE.CONFIG.min_height);
+        $('#fnx-tree-box').animate(
+            {
+                height: F3TREE.CONFIG.min_height
+            }, F3TREE.CONFIG.delay, function() {
+                destroyTreeBox();
+            }).animate(
+            {
+                top: '-=' + (parseInt(F3TREE.CONFIG.box_distance) + parseInt(height)) + 'px'
+            }, F3TREE.CONFIG.delay);
     };
 
     function mode1() {
@@ -123,19 +220,6 @@ var F3TREE = (function() {
             });
     };
 
-    function close() {
-        var height = px2int(F3TREE.CONFIG.min_height);
-        $('#fnx-tree-box').animate(
-            {
-                height: F3TREE.CONFIG.min_height
-            }, F3TREE.CONFIG.delay, function() {
-                destroyTreeBox();
-            }).animate(
-            {
-                top: '-=' + (parseInt(F3TREE.CONFIG.box_distance) + parseInt(height)) + 'px'
-            }, F3TREE.CONFIG.delay);
-    };
-
     function createTreeBox() {
         $('#' + F3TREE.CONFIG.placeholderID).append('<div id="fnx-tree-box" class="fnx-tree-box"><div id="vertical_tree"></div></div>');
         document.getElementById('vertical_tree').innerHTML = "Loading... <img src='images/loading.gif'>";
@@ -179,11 +263,13 @@ var F3TREE = (function() {
     };
 
     return {
-        CONFIG  :   CONFIG,
-        init    :   init,
-        mode1   :   mode1,
-        mode2   :   mode2,
-        mode3   :   mode3
+        CONFIG              :   CONFIG,
+        init                :   init,
+        showTreeOptions     :   showTreeOptions,
+        mode1               :   mode1,
+        mode2               :   mode2,
+        mode3               :   mode3,
+        loadConfiguration   :   loadConfiguration
     };
 
 })();

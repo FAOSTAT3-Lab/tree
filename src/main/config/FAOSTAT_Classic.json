@@ -1,0 +1,347 @@
+[
+    {
+        "value": "C",
+        "name": "Food supply",
+        "parent": "-1"
+    },
+    {
+        "value": "F",
+        "name": "Forestry",
+        "parent": "-1"
+    },
+    {
+        "value": "R",
+        "name": "Resources",
+        "parent": "-1"
+    },
+    {
+        "value": "O",
+        "name": "Population",
+        "parent": "-1"
+    },
+    {
+        "value": "FBS",
+        "name": "Food Balance Sheet",
+        "parent": "FB"
+    },
+    {
+        "value": "CC",
+        "name": "Crops Primary Equivalent",
+        "parent": "C"
+    },
+    {
+        "value": "CL",
+        "name": "Livestock and Fish Primary Equivalent",
+        "parent": "C"
+    },
+    {
+        "value": "FB",
+        "name": "Food balance sheet",
+        "parent": "-1"
+    },
+    {
+        "value": "B",
+        "name": "Commodity Balances",
+        "parent": "-1"
+    },
+    {
+        "value": "BC",
+        "name": "Crops Primary Equivalent",
+        "parent": "B"
+    },
+    {
+        "value": "BL",
+        "name": "Livestock and Fish Primary Equivalent",
+        "parent": "B"
+    },
+    {
+        "value": "OA",
+        "name": "Annual population",
+        "parent": "O"
+    },
+    {
+        "value": "Q",
+        "name": "Production",
+        "parent": "-1"
+    },
+    {
+        "value": "QC",
+        "name": "Crops",
+        "parent": "Q"
+    },
+    {
+        "value": "QD",
+        "name": "Crops processed",
+        "parent": "Q"
+    },
+    {
+        "value": "QA",
+        "name": "Live Animals",
+        "parent": "Q"
+    },
+    {
+        "value": "QL",
+        "name": "Livestock Primary",
+        "parent": "Q"
+    },
+    {
+        "value": "QP",
+        "name": "Livestock Processed",
+        "parent": "Q"
+    },
+    {
+        "value": "QI",
+        "name": "Production indices",
+        "parent": "Q"
+    },
+    {
+        "value": "QV",
+        "name": "Value of Agricultural Production",
+        "parent": "Q"
+    },
+    {
+        "value": "T",
+        "name": "Trade",
+        "parent": "-1"
+    },
+    {
+        "value": "TP",
+        "name": "Crops and livestock products",
+        "parent": "T"
+    },
+    {
+        "value": "TA",
+        "name": "Live animals",
+        "parent": "T"
+    },
+    {
+        "value": "TM",
+        "name": "Detailed trade matrix",
+        "parent": "T"
+    },
+    {
+        "value": "TI",
+        "name": "Trade Indices",
+        "parent": "T"
+    },
+    {
+        "value": "RF",
+        "name": "Fertilizers",
+        "parent": "R"
+    },
+    {
+        "value": "RA",
+        "name": "Fertilizers archive",
+        "parent": "R"
+    },
+    {
+        "value": "RV",
+        "name": "Fertilizers - Trade Value",
+        "parent": "R"
+    },
+    {
+        "value": "RP",
+        "name": "Pesticides (use)",
+        "parent": "R"
+    },
+    {
+        "value": "RT",
+        "name": "Pesticides (trade)",
+        "parent": "R"
+    },
+    {
+        "value": "CS",
+        "name": "Capital stock",
+        "parent": "R"
+    },
+    {
+        "value": "RM",
+        "name": "Machinery",
+        "parent": "R"
+    },
+    {
+        "value": "RY",
+        "name": "Machinery Archive",
+        "parent": "R"
+    },
+    {
+        "value": "E",
+        "name": "Agri-Environmental Indicators",
+        "parent": "-1"
+    },
+    {
+        "value": "FO",
+        "name": "Forestry Production and Trade",
+        "parent": "F"
+    },
+    {
+        "value": "FT",
+        "name": "Forestry Trade Flows",
+        "parent": "F"
+    },
+    {
+        "value": "EE",
+        "name": "Energy**",
+        "parent": "E"
+    },
+    {
+        "value": "P",
+        "name": "Prices",
+        "parent": "-1"
+    },
+    {
+        "value": "2.7.1",
+        "name": "Producer prices",
+        "parent": "P"
+    },
+    {
+        "value": "PM",
+        "name": "Producer Prices - Monthly",
+        "parent": "P"
+    },
+    {
+        "value": "PP",
+        "name": "Producer Prices - Annual",
+        "parent": "P"
+    },
+    {
+        "value": "PA",
+        "name": "Producer Prices - Archive",
+        "parent": "P"
+    },
+    {
+        "value": "PI",
+        "name": "Producer Price Indices - Annual",
+        "parent": "P"
+    },
+    {
+        "value": "AS",
+        "name": "ASTI R&D Indicators",
+        "parent": "-1"
+    },
+    {
+        "value": "AA",
+        "name": "ASTI-Researchers by Agency Type",
+        "parent": "AS"
+    },
+    {
+        "value": "AR",
+        "name": "ASTI-Researchers by Gender and Degree Level",
+        "parent": "AS"
+    },
+    {
+        "value": "AE",
+        "name": "ASTI-Expenditures",
+        "parent": "AS"
+    },
+    {
+        "value": "RL",
+        "name": "Total territorial area and land area",
+        "parent": "R"
+    },
+    {
+        "value": "EL",
+        "name": "Land**",
+        "parent": "E"
+    },
+    {
+        "value": "ES",
+        "name": "Soil**",
+        "parent": "E"
+    },
+    {
+        "value": "EW",
+        "name": "Water**",
+        "parent": "E"
+    },
+    {
+        "value": "G1",
+        "name": "Emissions - Agriculture",
+        "parent": "-1"
+    },
+    {
+        "value": "GT",
+        "name": "Agriculture Total",
+        "parent": "G1"
+    },
+    {
+        "value": "GE",
+        "name": "Enteric Fermentation",
+        "parent": "G1"
+    },
+    {
+        "value": "GM",
+        "name": "Manure Management",
+        "parent": "G1"
+    },
+    {
+        "value": "GR",
+        "name": "Rice Cultivation",
+        "parent": "G1"
+    },
+    {
+        "value": "GY",
+        "name": "Synthetic Fertilizers",
+        "parent": "G1"
+    },
+    {
+        "value": "GU",
+        "name": "Manure applied to soils",
+        "parent": "G1"
+    },
+    {
+        "value": "GP",
+        "name": "Manure left on pasture",
+        "parent": "G1"
+    },
+    {
+        "value": "GA",
+        "name": "Crop Residues",
+        "parent": "G1"
+    },
+    {
+        "value": "GV",
+        "name": "Cultivated Organic Soils",
+        "parent": "G1"
+    },
+    {
+        "value": "GB",
+        "name": "Burning Crop Residues",
+        "parent": "G1"
+    },
+    {
+        "value": "G2",
+        "name": "Emissions - Land Use",
+        "parent": "-1"
+    },
+    {
+        "value": "GF",
+        "name": "Forest Land",
+        "parent": "G2"
+    },
+    {
+        "value": "GC",
+        "name": "Cropland",
+        "parent": "G2"
+    },
+    {
+        "value": "EC",
+        "name": "Air and climate change",
+        "parent": "E"
+    },
+    {
+        "value": "EF",
+        "name": "Fertilizers**",
+        "parent": "E"
+    },
+    {
+        "value": "EK",
+        "name": "Livestock**",
+        "parent": "E"
+    },
+    {
+        "value": "EP",
+        "name": "Pesticides**",
+        "parent": "E"
+    }
+]

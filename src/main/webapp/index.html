@@ -11,13 +11,20 @@
             function test() {
                 F3TREE.init({
                     placeholderID   :   'test',
-                    labelID         :   '_download'
+                    labelID         :   '_data'
                 });
-            }
+            };
+            function loadConfiguration(configurationID) {
+                F3TREE.loadConfiguration(configurationID);
+            };
         </script>
     </head>
 
     <body onload='test();'>
+        <div id='buttons'>
+            <button onclick='loadConfiguration("classic");'>FAOSTAT Classic</button>
+            <button onclick='loadConfiguration("statistics");'>FAOSTAT Statistics</button>
+        </div>
         <div id='test' style='margin-top: 150px; margin-left: 300px;'></div>
     </body>
 

@@ -1,19 +1,24 @@
 <html>
 
     <head>
+        <title>FAOSTAT Lab</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
         <script type='text/javascript' src='js/F3TREE.js'></script>
         <script type='text/javascript' src='http://code.jquery.com/jquery-2.1.0.min.js'></script>
+        <script type='text/javascript' src='http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js'></script>
         <script type='text/javascript' src='http://fenixapps.fao.org/repository/js/jquery/1.0.9/jquery.i18n.properties-min.js'></script>
         <script type='text/javascript' src='http://fenixapps.fao.org/repository/js/jqwidgets/3.2.2/jqx-all.js'></script>
         <link href='css/F3TREE.css' rel='stylesheet'>
         <link href='http://fenixapps.fao.org/repository/js/jqwidgets/3.2.2/styles/jqx.base.css' rel='stylesheet'>
+        <link href='http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css' rel='stylesheet'>
         <script>
             function test() {
                 F3TREE.init({
-                    placeholderID   :   'test',
+                    placeholderID   :   'menu_data',
                     labelID         :   '_data',
                     tree_callback   :   function(selection) {
                         console.log(selection);
+                        F3TREE.closeTreeOptions();
                     }
                 });
             };
@@ -24,11 +29,70 @@
     </head>
 
     <body onload='test();'>
-        <div id='buttons'>
-            <button onclick='loadConfiguration("classic");'>FAOSTAT Classic</button>
-            <button onclick='loadConfiguration("statistics");'>FAOSTAT Statistics</button>
+
+        <div class='container'>
+
+            <div class='row'>
+
+                <div class='col-xs-12 col-sm-9 col-md-9 col-lg-9'>
+                    <div style='width: 100%; background-color: #055C97; color: #FFFFFF; padding: 8px; font-weight: bold;'>
+                        FAOSTAT Lab
+                    </div>
+                </div>
+                <div class='col-xs-12 col-sm-1 col-md-1 col-lg-1'>
+                    <div style='width: 100%; background-color: #055C97; color: #FFFFFF; padding: 8px;'>
+                        english
+                    </div>
+                </div>
+                <div class='col-xs-12 col-sm-1 col-md-1 col-lg-1'>
+                    <div style='width: 100%; background-color: #055C97; color: #FFFFFF; padding: 8px;'>
+                        french
+                    </div>
+                </div>
+                <div class='col-xs-12 col-sm-1 col-md-1 col-lg-1'>
+                    <div style='width: 100%; background-color: #055C97; color: #FFFFFF; padding: 8px;'>
+                        spanish
+                    </div>
+                </div>
+
+            </div>
+
+            <div class='row'>
+                <div class='col-xs-12 col-sm-12 col-md-3 col-lg-3'>
+                    <div class='tree-menu-box'>
+                        Home
+                    </div>
+                </div>
+                <div class='col-xs-12 col-sm-12 col-md-3 col-lg-3'>
+                    <div id='menu_data'>
+                        Data
+                    </div>
+                </div>
+                <div class='col-xs-12 col-sm-12 col-md-3 col-lg-3'>
+                    <div class='tree-menu-box'>
+                        Search
+                    </div>
+                </div>
+                <div class='col-xs-12 col-sm-12 col-md-3 col-lg-3'>
+                    <div class='tree-menu-box'>
+                        Methods & Standards
+                    </div>
+                </div>
+            </div>
+
+            <div class='row' style='margin-top: 200px;'>
+
+                <div class='col-xs-12 col-sm-6 col-md-6 col-lg-6'>
+                    <button style='width: 100%;' class='btn btn-default' onclick='loadConfiguration("classic");'>FAOSTAT Classic</button>
+                </div>
+                <div class='col-xs-12 col-sm-6 col-md-12 col-lg-6'>
+                    <button style='width: 100%;' class='btn btn-default' onclick='loadConfiguration("statistics");'>FAOSTAT Statistics</button>
+                </div>
+
+            </div>
+
         </div>
-        <div id='test' style='margin-top: 150px; margin-left: 300px;'></div>
+
     </body>
 
 </html>

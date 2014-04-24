@@ -11,10 +11,10 @@ var F3TREE = (function() {
         labelID                 :   '_default',
         min_height              :   '20px',
         delay                   :   250,
-        box_distance            :   9,
-        tree_distance           :   18,
+        box_distance            :   -1,
+        tree_distance           :   20,
         tree_options_open       :   false,
-        tree_options_height     :   '30px',
+        tree_options_height     :   '42px',
         mode1_open              :   false,
         mode1_height            :   '348px',
         mode1_width             :   '298px',
@@ -24,8 +24,8 @@ var F3TREE = (function() {
         mode3_open              :   false,
         mode3_height            :   '248px',
         mode3_width             :   '248px',
-        v_tree_height           :   '346px',
-        v_tree_width            :   '296px',
+        v_tree_height           :   '335px',
+        v_tree_width            :   '285px',
         v_tree_data             :   null,
         default_configuration   :   'classic',
         configurations          :   {
@@ -118,15 +118,15 @@ var F3TREE = (function() {
 
         /* Compute the position of the original placeholder. */
         var position = $('#tree-menu-box').position();
-        F3TREE.CONFIG.placeholder_top = position.top;
+        F3TREE.CONFIG.placeholder_top = position.top - 22;
         F3TREE.CONFIG.placeholder_left = position.left;
-        var height = px2int($('#tree-menu-box').css('height'));
-        var width = px2int($('#tree-menu-box').css('width')) - 8;
+        var height = 2 * px2int($('#tree-menu-box').css('height'));
+        var width = px2int($('#tree-menu-box').css('width'));
         $('#' + id).css('display', 'inline');
         $('#' + id).css('top', F3TREE.CONFIG.placeholder_top);
         $('#' + id).css('left', F3TREE.CONFIG.placeholder_left);
         $('#' + id).css('width', width);
-        $('#' + id).css('height', height);
+        $('#' + id).css('height', '42px');
 
 
         // TODO Find a way to make the alignment dynamic
@@ -283,7 +283,8 @@ var F3TREE = (function() {
         mode1               :   mode1,
         mode2               :   mode2,
         mode3               :   mode3,
-        loadConfiguration   :   loadConfiguration
+        loadConfiguration   :   loadConfiguration,
+        closeTreeOptions    :   closeTreeOptions
     };
 
 })();

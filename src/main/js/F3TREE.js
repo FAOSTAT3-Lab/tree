@@ -6,10 +6,13 @@ var F3TREE = (function() {
         I18N_prefix             :   '',
         prefix                  :   '',
         placeholderID           :   '',
+        placeholder_top         :   null,
+        placeholder_left        :   null,
         labelID                 :   '_default',
         min_height              :   '20px',
         delay                   :   250,
         box_distance            :   9,
+        tree_distance           :   18,
         tree_options_open       :   false,
         tree_options_height     :   '30px',
         mode1_open              :   false,
@@ -109,21 +112,21 @@ var F3TREE = (function() {
 
         /* Compute the position of the original placeholder. */
         var position = $('#tree-menu-box').position();
-        var top = position.top;
-        var left = position.left;
+        F3TREE.CONFIG.placeholder_top = position.top;
+        F3TREE.CONFIG.placeholder_left = position.left;
         var height = px2int($('#tree-menu-box').css('height'));
         var width = px2int($('#tree-menu-box').css('width')) - 8;
         $('#' + id).css('display', 'inline');
-        $('#' + id).css('top', top);
-        $('#' + id).css('left', left);
+        $('#' + id).css('top', F3TREE.CONFIG.placeholder_top);
+        $('#' + id).css('left', F3TREE.CONFIG.placeholder_left);
         $('#' + id).css('width', width);
         $('#' + id).css('height', height);
 
 
         // TODO Find a way to make the alignment dynamic
-        $('#vertical').css('left', (4 + $('#space1').position().left) + 'px');
-        $('#horizontal').css('left', (8 + 29 + 6 + $('#space2').position().left) + 'px');
-        $('#alphabetical').css('left', (8 + 29 + 8 + 29 + 5 + $('#space3').position().left) + 'px');
+        $('#vertical').css('left', (F3TREE.CONFIG.placeholder_left) + 'px');
+        $('#horizontal').css('left', (F3TREE.CONFIG.placeholder_left) + 'px');
+        $('#alphabetical').css('left', (F3TREE.CONFIG.placeholder_left) + 'px');
 
         /* Show the icons holder box. */
         $('#' + id).animate(
@@ -132,7 +135,7 @@ var F3TREE = (function() {
             }, F3TREE.CONFIG.delay).animate({
                 height: F3TREE.CONFIG.tree_options_height
             }, F3TREE.CONFIG.delay, function() {
-                open('alphabetical', F3TREE.CONFIG.mode3_width, F3TREE.CONFIG.mode3_height, buildAlphabeticalTree);
+                open('vertical', F3TREE.CONFIG.mode1_width, F3TREE.CONFIG.mode1_height, buildVerticalTree);
             });
 
     };
@@ -200,19 +203,14 @@ var F3TREE = (function() {
 
     function open(iconID, boxWidth, boxHeight, callback) {
         createTreeBox();
-        var position = $('#' + iconID).position();
-        var top = position.top;
-        var left = position.left;
-        var height = px2int($('#fnx-tree-box').css('height'));
-        var width = px2int($('#fnx-tree-box').css('width'));
-        var icon_width = px2int($('.image').css('width'));
-        var icon_height = px2int($('.image').css('height'));
+        var height_1 = px2int($('#tree-menu-box').css('height'));
+        var height_2 = px2int($('#tree-options-box').css('height'));
         $('#fnx-tree-box').css('display', 'inline');
-        $('#fnx-tree-box').css('top', top);
-        $('#fnx-tree-box').css('left', (icon_width / 2) + left - (width / 2));
+        $('#fnx-tree-box').css('top', F3TREE.CONFIG.placeholder_top);
+        $('#fnx-tree-box').css('left', F3TREE.CONFIG.placeholder_left);
         $('#fnx-tree-box').animate(
             {
-                top: '+=' + (parseInt(F3TREE.CONFIG.box_distance) + parseInt(height)) + 'px'
+                top: '+=' + (F3TREE.CONFIG.tree_distance + parseInt(height_1) + parseInt(height_2)) + 'px'
             }, F3TREE.CONFIG.delay).animate(
             {
                 width   : boxWidth,

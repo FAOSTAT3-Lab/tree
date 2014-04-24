@@ -28,10 +28,16 @@ var F3TREE = (function() {
         v_tree_width            :   '296px',
         v_tree_data             :   null,
         default_configuration   :   'classic',
-        configurations  :   {
+        configurations          :   {
             statistics  :   '/tree/config/FAOSTAT_Statistics.json',
             classic     :   '/tree/config/FAOSTAT_Classic.json'
-        }
+        },
+        selection               :   {
+            code        :   null,
+            label       :   null,
+            isDomain    :   false
+        },
+        tree_callback           : null
     };
 
     function init(config) {
@@ -259,6 +265,14 @@ var F3TREE = (function() {
             source  :   records,
             width   :   F3TREE.CONFIG.v_tree_width,
             height  :   F3TREE.CONFIG.v_tree_height
+        });
+        $('#vertical_tree').on('select', function (event) {
+            var args = event.args;
+            var item = $('#vertical_tree').jqxTree('getItem', args.element);
+            F3TREE.CONFIG.selection.code = item.value;
+            F3TREE.CONFIG.selection.label = item.label;
+            F3TREE.CONFIG.selection.isDomain = !item.hasItems;
+            F3TREE.CONFIG.tree_callback(F3TREE.CONFIG.selection);
         });
     };
 

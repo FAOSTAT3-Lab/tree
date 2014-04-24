@@ -11,7 +11,10 @@
             function test() {
                 F3TREE.init({
                     placeholderID   :   'test',
-                    labelID         :   '_data'
+                    labelID         :   '_data',
+                    tree_callback   :   function(selection) {
+                        console.log(selection);
+                    }
                 });
             };
             function loadConfiguration(configurationID) {
